@@ -1,0 +1,20 @@
+name: Executes post-deployment tasks
+
+on:
+  workflow_call:
+    inputs:
+      URL:
+        type: string
+
+
+jobs:
+  post-deploy:
+    name: Executes post-deployment tasks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set deployment info for K8S
+        id: deployment_info_k8s
+        run: |
+          echo "url=https://${{ inputs.URL }}.dev." >> $GITHUB_OUTPUT
+
+
